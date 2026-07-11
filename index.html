@@ -3,273 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Private Live Chat</title>
-    <!-- Google Fonts & FontAwesome for Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>🔴 Private Live Video Room</title>
+    
+    <!-- ========================================== -->
+    <!-- SOCIAL MEDIA PREVIEW & THUMBNAIL META TAGS -->
+    <!-- ========================================== -->
+    <meta name="description" content="Sign up for free to get 100 coins and join my direct live video chat room!">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="🔴 Live Now: Join My Private Video Room">
+    <meta property="og:description" content="Create a free account, grab your 100 free coins, and start a direct face-to-face video chat with me right now.">
+    <meta property="og:url" content="https://santuy.me/bedjfha">
+    <meta property="og:site_name" content="Exclusive Live Cam">
+    <!-- Thumbnail Image (You can change this URL to any hot image) -->
+    <meta property="og:image" content="https://c4.wallpaperflare.com/wallpaper/527/642/440/adult-babe-beautiful-brunette-wallpaper-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🔴 Live Now: Join My Private Video Room">
+    <meta name="twitter:description" content="Create a free account, grab your 100 free coins, and start a direct face-to-face video chat with me right now.">
+    <meta name="twitter:image" content="https://c4.wallpaperflare.com/wallpaper/527/642/440/adult-babe-beautiful-brunette-wallpaper-preview.jpg">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-dark: #09090b;
-            --sidebar-bg: #111113;
-            --pink-accent: #f91880;
-            --pink-glow: rgba(249, 24, 128, 0.4);
-            --glass-bg: rgba(30, 30, 35, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f4f4f5;
-            --text-muted: #a1a1aa;
+            --primary-pink: #ff2a70;
+            --dark-bg: #0a0a0c;
+            --glass-bg: rgba(20, 20, 25, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; user-select: none; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            display: flex;
+            background-color: var(--dark-bg);
+            color: #fff;
             height: 100vh;
             overflow: hidden;
-        }
-
-        /* --- Left Sidebar (image_945060.png style) --- */
-        .sidebar {
-            width: 70px;
-            background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--glass-border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0;
-            z-index: 10;
-        }
-
-        .sidebar .top-icon { color: var(--pink-accent); font-size: 24px; margin-bottom: 40px; }
-        .sidebar .nav-icons { display: flex; flex-direction: column; gap: 25px; width: 100%; align-items: center; }
-        .sidebar .nav-icons i { color: var(--text-muted); font-size: 20px; cursor: pointer; transition: 0.3s; }
-        .sidebar .nav-icons i:hover, .sidebar .nav-icons i.active { color: var(--text-main); }
-        .sidebar .bottom-icon {
-            margin-top: auto;
-            background: var(--pink-accent);
-            width: 45px; height: 45px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 15px var(--pink-glow);
+            position: relative;
             cursor: pointer;
         }
 
-        /* --- Main Chat Area (image_9453c1.png style) --- */
-        .main-chat {
-            flex: 1;
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
-        }
-
-        /* Dark overlay to make text readable */
-        .overlay {
+        /* Fake Video Background */
+        .video-background {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(9,9,11,0.7) 0%, rgba(9,9,11,0.9) 100%);
+            background: url('https://images.unsplash.com/photo-1616091093714-c64882e9ab55?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            filter: blur(8px) brightness(0.6);
             z-index: 1;
+            transform: scale(1.1); /* Hides blurred edges */
         }
 
-        /* Top Floating Banner (Coins/Signup) */
-        .top-banner {
+        /* Top Bar Overlay */
+        .top-bar {
             position: absolute;
-            top: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(80, 20, 50, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(249, 24, 128, 0.3);
-            border-radius: 30px;
-            padding: 10px 20px;
-            display: flex; align-items: center; gap: 15px;
-            z-index: 10;
-            white-space: nowrap;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        .top-banner span { font-size: 14px; font-weight: 600; }
-        .btn-signup {
-            background: var(--pink-accent);
-            color: white; padding: 6px 16px; border-radius: 20px;
-            font-size: 13px; font-weight: 600;
-        }
-
-        /* Chat Messages Container */
-        .chat-container {
-            position: relative;
-            z-index: 5;
-            height: 100%;
-            padding: 80px 20px 120px 20px; /* space for top banner and bottom input */
-            overflow-y: auto;
+            top: 20px; left: 20px; right: 20px;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Message Bubbles */
-        .message-box {
-            max-width: 80%;
-            padding: 15px 20px;
-            border-radius: 18px;
-            font-size: 15px;
-            line-height: 1.5;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .msg-received {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-        
-        /* Action text in pink italic (like in image_9453c1.png) */
-        .action-text { color: #ff80b5; font-style: italic; margin-bottom: 8px; display: block; }
-
-        .msg-sent {
-            background: rgba(120, 20, 60, 0.7);
-            border: 1px solid rgba(249, 24, 128, 0.2);
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-
-        /* Bottom Input Area */
-        .input-area-wrapper {
-            position: absolute;
-            bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 800px;
+            justify-content: space-between;
+            align-items: center;
             z-index: 10;
         }
 
-        .suggested-reply {
-            background: rgba(120, 20, 60, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 10px;
+        .live-badge {
+            background: #ff0000;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px;
             font-size: 14px;
-            cursor: pointer;
-            border: 1px solid rgba(249, 24, 128, 0.3);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .chat-input-box {
+            font-weight: 600;
             display: flex;
             align-items: center;
+            gap: 6px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .viewers {
             background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            padding: 12px 20px;
-            cursor: pointer;
         }
 
-        .chat-input-box input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            font-size: 15px;
-            outline: none;
-            padding: 0 15px;
-            pointer-events: none; /* Forces click on the wrapper */
+        /* The Main Action Box (Center/Bottom) */
+        .action-modal {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(15, 15, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 42, 112, 0.3);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            z-index: 20;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255, 42, 112, 0.2);
         }
-        .chat-input-box input::placeholder { color: var(--text-muted); }
+
+        .profile-pic {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-pink);
+            margin: -70px auto 15px auto;
+            background: url('https://c4.wallpaperflare.com/wallpaper/527/642/440/adult-babe-beautiful-brunette-wallpaper-preview.jpg') center/cover;
+            box-shadow: 0 0 15px var(--primary-pink);
+        }
+
+        .action-modal h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        .action-modal p { font-size: 14px; color: #ccc; margin-bottom: 20px; line-height: 1.5; }
         
-        .icon-btn { color: var(--text-muted); font-size: 18px; margin: 0 8px; }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .sidebar { display: none; } /* Hide sidebar on mobile for full immersion */
-            .message-box { max-width: 90%; }
+        .coin-box {
+            background: linear-gradient(45deg, #ffd700, #ffaa00);
+            color: #000;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            animation: float 3s ease-in-out infinite;
         }
+
+        .btn-signup {
+            display: block;
+            width: 100%;
+            background: var(--primary-pink);
+            color: white;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(255, 42, 112, 0.5);
+            transition: 0.3s;
+        }
+
+        /* Fake Chat Overlay */
+        .chat-overlay {
+            position: absolute;
+            bottom: 20px; left: 20px;
+            width: calc(100% - 40px);
+            max-width: 350px;
+            max-height: 200px;
+            overflow: hidden;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .chat-msg {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.5s forwards;
+        }
+
+        .chat-msg span.name { font-weight: 700; color: #ffaa00; margin-right: 5px; }
+        .chat-msg.host span.name { color: var(--primary-pink); }
+
+        /* Animations */
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
+
     </style>
 </head>
-<!-- The entire body is a clickable zone that triggers the redirect -->
-<body onclick="redirectToOffer()">
+<!-- Whole page click redirects to your link -->
+<body onclick="window.location.href='https://santuy.me/bedjfha'">
 
-    <!-- Left Sidebar -->
-    <div class="sidebar">
-        <i class="fa-solid fa-heart top-icon"></i>
-        <div class="nav-icons">
-            <i class="fa-solid fa-layer-group"></i>
-            <i class="fa-regular fa-square-plus"></i>
-            <i class="fa-regular fa-compass"></i>
-            <i class="fa-regular fa-comment-dots active" style="color: white;"></i>
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <i class="fa-regular fa-folder"></i>
-            <i class="fa-regular fa-user"></i>
-        </div>
-        <div class="bottom-icon">
-            <i class="fa-solid fa-gem" style="color: white; font-size: 18px;"></i>
-        </div>
+    <!-- Blurred Background -->
+    <div class="video-background"></div>
+
+    <!-- Top UI -->
+    <div class="top-bar">
+        <div class="live-badge"><i class="fa-solid fa-circle"></i> LIVE</div>
+        <div class="viewers"><i class="fa-solid fa-eye"></i> 1,402 watching</div>
     </div>
 
-    <!-- Main Chat Area -->
-    <div class="main-chat">
-        <div class="overlay"></div>
-
-        <!-- Top Banner -->
-        <div class="top-banner">
-            <span><i class="fa-solid fa-coins" style="color: gold;"></i> 0 coins left</span>
-            <span style="color: var(--text-muted);">|</span>
-            <span>🎁 50 on signup</span>
-            <div class="btn-signup">Sign up free</div>
+    <!-- Main Popup Box -->
+    <div class="action-modal">
+        <div class="profile-pic"></div>
+        <h2>Direct Video Chat</h2>
+        <p>I am waiting in the private room. Sign up for free right now, grab your free coins, and turn on your camera!</p>
+        
+        <div class="coin-box">
+            <i class="fa-solid fa-coins"></i> GET 100 FREE COINS ON SIGNUP
         </div>
 
-        <!-- Chat History -->
-        <div class="chat-container" id="chatContainer">
-            
-            <div class="message-box msg-sent">
-                You are so beautiful. Tell me everything about yourself.
-            </div>
+        <div class="btn-signup">Create Free Account</div>
+        <p style="font-size: 11px; margin-top: 15px; color: #888;">*Use the 100 free coins to join my private video call instantly.</p>
+    </div>
 
-            <div class="message-box msg-received">
-                <span class="action-text">Laughs softly, running a hand through her hair as she leans against the doorframe.</span>
-                Well, that's quite the morning greeting. I'm flattered, sweetheart. I work from home and spend most days in my natural state. I am completely alone right now...
-                <br><br>
-                <span class="action-text">She gives you a warm, teasing smile.</span>
-                Skip the texting. Want to join my live video face to face? I promise to show you everything.
-            </div>
-
-        </div>
-
-        <!-- Bottom Input -->
-        <div class="input-area-wrapper">
-            <div class="suggested-reply">
-                <span style="color: var(--text-muted); font-size: 11px; display: block; margin-bottom: 2px;">suggested reply:</span>
-                Yes! Send me your private link 🔥
-            </div>
-            
-            <div class="chat-input-box">
-                <i class="fa-regular fa-image icon-btn"></i>
-                <input type="text" placeholder="Send a message...">
-                <i class="fa-solid fa-wand-magic-sparkles icon-btn"></i>
-                <i class="fa-solid fa-microphone icon-btn" style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 50%;"></i>
-            </div>
-        </div>
+    <!-- Fake Live Chat Stream -->
+    <div class="chat-overlay" id="chatStream">
+        <!-- Messages will be injected here via JS -->
     </div>
 
     <script>
-        // Universal Redirect Function
-        function redirectToOffer() {
-            // আপনার অ্যাফিলিয়েট লিংক এখানে দেওয়া আছে
-            window.location.href = "https://santuy.me/bedjfha";
+        // Fake Chat Messages to build trust and urgency
+        const messages = [
+            { name: "Guest843", text: "Are you really naked? 🥵", type: "user" },
+            { name: "System", text: "Guest843 just joined the private room.", type: "sys" },
+            { name: "Me (Host)", text: "Yes! Just sign up, claim your 100 coins, and start the video call with me! 😘", type: "host" },
+            { name: "Mike_D", text: "Just got my 100 free coins, turning on my camera now!", type: "user" },
+            { name: "Me (Host)", text: "Waiting for you babe... hurry up! 💦", type: "host" }
+        ];
+
+        const chatStream = document.getElementById("chatStream");
+        let i = 0;
+
+        function addMessage() {
+            if (i < messages.length) {
+                let msgDiv = document.createElement("div");
+                msgDiv.className = messages[i].type === 'host' ? "chat-msg host" : "chat-msg";
+                
+                let nameColor = messages[i].type === 'host' ? '#ff2a70' : '#00e676';
+                if(messages[i].type === 'sys') nameColor = '#ccc';
+
+                msgDiv.innerHTML = `<span class="name" style="color: ${nameColor}">${messages[i].name}:</span> ${messages[i].text}`;
+                chatStream.appendChild(msgDiv);
+                
+                // Keep only last 3 messages visible
+                if (chatStream.children.length > 3) {
+                    chatStream.removeChild(chatStream.firstChild);
+                }
+                
+                i++;
+                setTimeout(addMessage, Math.random() * 2000 + 1500); // Random delay between 1.5s to 3.5s
+            }
         }
-        
-        // Auto scroll to bottom
-        window.onload = function() {
-            var chat = document.getElementById("chatContainer");
-            chat.scrollTop = chat.scrollHeight;
-        };
+
+        // Start chat simulation after 1 second
+        setTimeout(addMessage, 1000);
     </script>
 </body>
 </html>
