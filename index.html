@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🔴 Private Live Video Room</title>
     
-    <!-- ========================================== -->
-    <!-- SOCIAL MEDIA PREVIEW & THUMBNAIL META TAGS -->
-    <!-- ========================================== -->
     <meta name="description" content="I am home alone and waiting for you. Tap here to join my live face-to-face video stream instantly.">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="🔴 Live Now: Join My Private Video Room">
     <meta property="og:description" content="Skip the texting and let us connect face to face. Click here to enter my private broadcast directly.">
-    <meta property="og:url" content="https://sexdate420.netlify.app">
+    <meta property="og:url" content="https://bedjfha.hubss.one/p/uyMfR">
     <meta property="og:site_name" content="Exclusive Live Cam">
-    <!-- Thumbnail Image for Social Share Preview -->
     <meta property="og:image" content="https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -25,7 +21,6 @@
     <meta name="twitter:description" content="Skip the texting and let us connect face to face. Click here to enter my private broadcast directly.">
     <meta name="twitter:image" content="https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true">
 
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -76,7 +71,7 @@
         .fake-player {
             position: relative;
             width: 100%;
-            height: 260px;
+            height: 250px;
             background: #000;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
@@ -87,7 +82,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            animation: glitch-shake 0.3s infinite alternate; /* Causes the vibration/shaking */
+            animation: glitch-shake 0.3s infinite alternate;
         }
 
         /* The Live Badge */
@@ -115,7 +110,7 @@
             animation: blink 1s infinite alternate;
         }
 
-        /* Fake Sound Waves (Equalizer) in top right */
+        /* Fake Sound Waves (Equalizer) */
         .sound-wave {
             position: absolute;
             top: 15px;
@@ -138,8 +133,8 @@
 
         /* Loading Spinner */
         .spinner {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border: 4px solid rgba(255, 255, 255, 0.1);
             border-top-color: var(--accent-red);
             border-radius: 50%;
@@ -151,7 +146,7 @@
         .loading-text {
             font-family: 'Share Tech Mono', monospace;
             color: var(--accent-red);
-            font-size: 16px;
+            font-size: 15px;
             letter-spacing: 1px;
             animation: blink 1.5s infinite;
         }
@@ -164,16 +159,17 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- Age Verification Section (Below Player) --- */
+        /* --- Verification & Redirect Box --- */
         .verification-box {
             background: #111111;
             border: 2px solid #222;
-            border-top: 1px solid #ff2a40; /* Red glowing line connecting player and box */
+            border-top: 1px solid #ff2a40;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
             padding: 25px 20px;
             text-align: center;
             box-shadow: 0 -5px 20px rgba(255, 42, 64, 0.15);
+            min-height: 190px;
         }
 
         .verification-box h2 {
@@ -210,12 +206,35 @@
         
         .btn-yes:active { transform: scale(0.95); }
 
+        /* --- Countdown Progress Bar Styles --- */
+        .redirect-loader {
+            width: 100%;
+            height: 6px;
+            background: #222;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .redirect-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: loadBar 5s linear forwards;
+        }
+        .countdown-text {
+            font-size: 14px;
+            color: #eee;
+            line-height: 1.6;
+        }
+
         /* Keyframe Animations */
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.3; } }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes loadBar { 100% { width: 100%; } }
         
-        /* Vibration / Shake Effect */
         @keyframes glitch-shake {
             0% { transform: translate(0, 0); }
             20% { transform: translate(-1px, 1px); }
@@ -225,7 +244,6 @@
             100% { transform: translate(0, 0); }
         }
 
-        /* Sound Wave Animation */
         @keyframes sound {
             0% { height: 4px; }
             100% { height: 20px; }
@@ -233,22 +251,17 @@
 
     </style>
 </head>
-<!-- Whole screen redirects to your link -->
-<body onclick="window.location.href='https://bedjfha.hubss.one/p/uyMfR'">
+<body onclick="startRedirect()">
 
-    <!-- Background -->
     <div class="video-bg"></div>
 
     <div class="main-container">
         
-        <!-- Live Player Box (Vibrating & Buffering) -->
         <div class="fake-player">
-            <!-- LIVE Badge -->
             <div class="live-badge">
                 <div class="live-dot"></div> LIVE
             </div>
 
-            <!-- Fake Sound Wave -->
             <div class="sound-wave">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -256,23 +269,63 @@
                 <div class="bar"></div>
             </div>
 
-            <!-- Loading Center -->
             <div class="spinner"></div>
             <div class="loading-text">BUFFERING LIVE FEED...</div>
             <div class="sub-text">Encrypted Stream - Waiting for Unlock</div>
         </div>
 
-        <!-- Verification Box -->
         <div class="verification-box">
-            <h2><i class="fa-solid fa-lock" style="color: var(--accent-red);"></i> Action Required</h2>
-            <p class="warning-text">The live stream is currently playing in the background. Please verify your age to decrypt the video and audio.</p>
             
-            <div class="btn-yes">
-                YES, I AM 18+ (DECRYPT VIDEO)
+            <div id="initialState">
+                <h2><i class="fa-solid fa-lock" style="color: var(--accent-red);"></i> Action Required</h2>
+                <p class="warning-text">The live stream is currently playing in the background. Please verify your age to decrypt the video and audio.</p>
+                <div class="btn-yes">
+                    YES, I AM 18+ (DECRYPT VIDEO)
+                </div>
             </div>
+
+            <div id="redirectState" style="display: none;">
+                <h2 style="color: var(--neon-green);"><i class="fa-solid fa-circle-check"></i> Age Verified!</h2>
+                <p class="warning-text" style="color: #fff; margin-bottom: 5px;">Securely routing connection to the main private room...</p>
+                
+                <div class="redirect-loader">
+                    <div class="redirect-progress"></div>
+                </div>
+                
+                <p class="countdown-text">
+                    Transferring to live server <span style="color: var(--accent-red); font-weight: bold;">hubss.one</span> in <span id="timer" style="font-weight: bold; font-size: 16px; color: var(--neon-green);">5</span> seconds...
+                </p>
+            </div>
+
         </div>
 
     </div>
+
+    <script>
+        let isClicked = false;
+
+        function startRedirect() {
+            // Prevents multiple clicks from resetting the timer
+            if (isClicked) return;
+            isClicked = true;
+
+            // Switch views smoothly inside the box
+            document.getElementById('initialState').style.display = 'none';
+            document.getElementById('redirectState').style.display = 'block';
+
+            let seconds = 5;
+            let countdown = setInterval(function() {
+                seconds--;
+                document.getElementById('timer').textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    // Redirects directly to your offer link seamlessly
+                    window.location.href = 'https://bedjfha.hubss.one/p/uyMfR';
+                }
+            }, 1000);
+        }
+    </script>
 
 </body>
 </html>
