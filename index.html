@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true">
 
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -48,130 +48,188 @@
             align-items: center;
             overflow: hidden;
             position: relative;
+            cursor: pointer;
         }
 
         /* Blurred Background simulating a live feed */
         .video-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1616091093714-c64882e9ab55?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
-            filter: blur(15px) brightness(0.3);
+            background: url('https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true') center/cover no-repeat;
+            filter: blur(20px) brightness(0.2);
             z-index: 1;
             transform: scale(1.1);
         }
 
-        /* Verification Modal */
-        .verification-box {
+        /* Main Container: Player + Verification */
+        .main-container {
             position: relative;
             z-index: 10;
-            background: rgba(15, 15, 15, 0.9);
-            border: 2px solid rgba(255, 42, 64, 0.2);
-            backdrop-filter: blur(20px);
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
             width: 90%;
             max-width: 420px;
-            box-shadow: 0 0 30px rgba(255, 42, 64, 0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-radius: 12px;
+            animation: slideUp 0.5s ease-out;
         }
 
-        .icon-warning {
-            font-size: 50px;
-            color: var(--accent-red);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
+        /* --- Fake Video Player Section (Like frre.JPG) --- */
+        .fake-player {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            background: url('https://github.com/amanda25858-alt/text8/blob/main/HMaXk_HWcAAhsj0.jpg?raw=true') center/cover no-repeat;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            border: 2px solid #222;
+            border-bottom: none;
+            overflow: hidden;
         }
 
-        .verification-box h1 {
-            font-size: 24px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .verification-box p {
-            font-size: 15px;
-            color: #cccccc;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .btn-group {
+        /* The Live Badge */
+        .live-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(231, 76, 60, 0.85);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 700;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #ff4757;
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.4);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: blink 1s infinite alternate;
+            box-shadow: 0 0 8px #fff;
+        }
+
+        /* Fake Scrollbar on the right */
+        .fake-scrollbar {
+            position: absolute;
+            top: 0; right: 0;
+            width: 12px;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        .fake-thumb {
+            width: 10px;
+            height: 40px;
+            background: #555;
+            margin: 2px auto;
+            border-radius: 5px;
+        }
+
+        /* Bottom Player Overlay Text */
+        .player-bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0) 100%);
+            padding: 20px 10px 10px 10px;
+            text-align: center;
+        }
+        .player-bottom-bar h3 { font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+        .player-bottom-bar p { font-size: 14px; color: #ddd; }
+
+        /* --- Age Verification Section (Below Player) --- */
+        .verification-box {
+            background: #111111;
+            border: 2px solid #222;
+            border-top: 1px solid #333;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .verification-box h2 {
+            font-size: 18px;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .verification-box p.warning-text {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .btn-yes {
+            display: block;
+            width: 100%;
             background: var(--accent-red);
             color: white;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 18px;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 16px;
             font-weight: 700;
-            text-decoration: none;
             text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 42, 64, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 42, 64, 0.3);
+            transition: 0.2s;
         }
+        
+        .btn-yes:active { transform: scale(0.98); }
 
-        .btn-yes:active {
-            transform: scale(0.98);
-        }
-
-        .btn-no {
-            background: transparent;
-            color: var(--text-muted);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            border: 1px solid #333;
-            cursor: pointer;
-        }
-
-        .footer-text {
-            margin-top: 25px;
-            font-size: 11px;
-            color: #555;
-        }
-
-        @keyframes pulse { 
-            0% { transform: scale(1); opacity: 1; } 
-            50% { transform: scale(1.1); opacity: 0.8; } 
-            100% { transform: scale(1); opacity: 1; } 
-        }
+        /* Animations */
+        @keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.3; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     </style>
 </head>
-<body>
+<!-- Clicking anywhere redirects to the smartlink -->
+<body onclick="window.location.href='https://sexdate420.netlify.app'">
 
-    <!-- Background -->
+    <!-- Blurred Background -->
     <div class="video-bg"></div>
 
-    <!-- Modal -->
-    <div class="verification-box">
-        <i class="fa-solid fa-triangle-exclamation icon-warning"></i>
-        <h1>Age Verification</h1>
-        <p>This private live broadcast contains explicit face-to-face video content. You must be 18 years or older to enter this room.</p>
+    <!-- Main Card -->
+    <div class="main-container">
         
-        <div class="btn-group">
-            <!-- Clicking YES goes to your new smartlink -->
-            <div class="btn-yes" onclick="window.location.href='https://sexdate420.netlify.app'">
-                YES, I AM 18+ (ENTER)
+        <!-- Fake Video Player Widget -->
+        <div class="fake-player">
+            <!-- Red Live Badge -->
+            <div class="live-badge">
+                <div class="live-dot"></div> Live
             </div>
-            <!-- Clicking NO redirects elsewhere -->
-            <div class="btn-no" onclick="window.location.href='https://www.google.com'">
-                NO, I AM UNDER 18
+            
+            <!-- Fake Scrollbar -->
+            <div class="fake-scrollbar">
+                <div class="fake-thumb"></div>
+            </div>
+
+            <!-- Overlay Text like frre.JPG -->
+            <div class="player-bottom-bar">
+                <h3>Streaming in Private Room Now</h3>
+                <p>Join Free and Watch instantly</p>
             </div>
         </div>
 
-        <div class="footer-text">
-            By entering, you agree to our terms of service and confirm your age.
+        <!-- Age Verification Form below the player -->
+        <div class="verification-box">
+            <h2><i class="fa-solid fa-lock"></i> Verification Required</h2>
+            <p class="warning-text">This live broadcast contains restricted face-to-face content. Please confirm you are an adult to unlock the video player.</p>
+            
+            <div class="btn-yes">
+                YES, I AM 18+ (PLAY VIDEO)
+            </div>
         </div>
+
     </div>
 
 </body>
