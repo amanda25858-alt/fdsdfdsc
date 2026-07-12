@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🔴 Private Live Video Room</title>
+    <title>🔴 Private Ticket Show</title>
     
-    <!-- ========================================== -->
-    <!-- SOCIAL MEDIA PREVIEW & THUMBNAIL META TAGS -->
-    <!-- ========================================== -->
-    <meta name="description" content="I am home alone and waiting for you. Tap here to join my live face-to-face video stream instantly.">
+    <meta name="description" content="I am home alone and waiting for you. Tap here to join my private live broadcast instantly.">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="🔴 Live Now: Join My Private Video Room">
@@ -16,7 +13,6 @@
     <meta property="og:url" content="https://bedjfha.hubss.one/p/uyMfR">
     <meta property="og:site_name" content="Exclusive Live Cam">
     
-    <!-- 100% Fixed Thumbnail Image for Social Share Preview -->
     <meta property="og:image" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
     <meta property="og:image:width" content="1200">
@@ -28,25 +24,26 @@
     <meta name="twitter:description" content="Skip the texting and let us connect face to face. Click here to enter my private broadcast directly.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
 
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #050505;
-            --accent-red: #ff2a40;
+            --yellow-accent: #fbad19;
+            --live-red: #ea233b;
             --text-main: #ffffff;
+            --text-muted: #b3b3b3;
             --neon-green: #00ff00;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; user-select: none; }
 
         body {
-            background-color: var(--bg-color);
+            background-color: #121212;
             color: var(--text-main);
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
@@ -54,173 +51,174 @@
             cursor: pointer;
         }
 
-        /* Blurred Background (Fixed Image Link) */
-        .video-bg {
+        /* Fullscreen Blurred Background */
+        .bg-image {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
-            filter: blur(25px) brightness(0.15);
-            z-index: 1;
+            filter: blur(20px) brightness(0.2);
             transform: scale(1.1);
+            z-index: 1;
         }
 
-        /* Main Container */
-        .main-container {
+        /* Top Header Title */
+        .top-header {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            z-index: 10;
+            padding: 0 10px;
+            letter-spacing: 0.5px;
+        }
+        .top-header span { color: var(--yellow-accent); }
+
+        /* Main Center Card */
+        .ticket-card {
             position: relative;
             z-index: 10;
-            width: 90%;
-            max-width: 420px;
-            box-shadow: 0 10px 50px rgba(255, 42, 64, 0.15);
-            border-radius: 12px;
-            animation: slideUp 0.5s ease-out;
+            width: 92%;
+            max-width: 430px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
         }
 
-        /* --- Loading & Vibrating Video Player --- */
-        .fake-player {
+        /* Profile Container overlapping the box */
+        .profile-container {
             position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: -40px;
+        }
+
+        .profile-pic {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 3px solid #222;
+            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+        }
+
+        .live-badge {
+            background-color: var(--live-red);
+            color: white;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 9px;
+            border-radius: 4px;
+            position: absolute;
+            bottom: -6px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(234, 35, 59, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        /* Yellow Border Main Box */
+        .quote-box {
             width: 100%;
-            height: 250px;
-            background: #000;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            border: 2px solid #222;
-            border-bottom: none;
+            border: 2px solid var(--yellow-accent);
+            border-radius: 20px;
+            padding: 55px 18px 25px 18px;
+            background: rgba(20, 20, 20, 0.75);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        /* --- Fake Video Player Section Inside Box --- */
+        .fake-video-player {
+            width: 100%;
+            height: 160px;
+            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
+            filter: blur(8px) brightness(0.4);
+            border-radius: 10px;
+            position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            animation: glitch-shake 0.3s infinite alternate;
+            background: rgba(0, 0, 0, 0.4);
         }
 
-        /* The Live Badge */
-        .live-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: rgba(231, 76, 60, 0.9);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
-            z-index: 5;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #fff;
-            border-radius: 50%;
-            animation: blink 1s infinite alternate;
-        }
-
-        /* Fake Sound Waves (Equalizer) */
-        .sound-wave {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 20px;
-        }
-        .bar {
-            width: 4px;
-            background: var(--neon-green);
-            border-radius: 2px;
-            animation: sound 0.4s infinite alternate;
-        }
-        .bar:nth-child(1) { animation-duration: 0.3s; }
-        .bar:nth-child(2) { animation-duration: 0.5s; height: 100%; }
-        .bar:nth-child(3) { animation-duration: 0.4s; }
-        .bar:nth-child(4) { animation-duration: 0.6s; }
-
-        /* Loading Spinner */
-        .spinner {
-            width: 55px;
-            height: 55px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--accent-red);
+        .video-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--yellow-accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        /* Buffering Text */
-        .loading-text {
+        .buffering-text {
             font-family: 'Share Tech Mono', monospace;
-            color: var(--accent-red);
-            font-size: 15px;
+            color: #fff;
+            font-size: 12px;
             letter-spacing: 1px;
-            animation: blink 1.5s infinite;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .sub-text {
-            color: #777;
-            font-size: 12px;
-            margin-top: 8px;
+        /* --- Step 1: Age Verification Interactive Elements --- */
+        .verify-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
             text-transform: uppercase;
+            margin-bottom: 10px;
             letter-spacing: 0.5px;
         }
 
-        /* --- Verification & Redirect Box --- */
-        .verification-box {
-            background: #111111;
-            border: 2px solid #222;
-            border-top: 1px solid #ff2a40;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            padding: 25px 20px;
-            text-align: center;
-            box-shadow: 0 -5px 20px rgba(255, 42, 64, 0.15);
-            min-height: 190px;
-        }
-
-        .verification-box h2 {
-            font-size: 18px;
-            color: var(--text-main);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .verification-box p.warning-text {
+        .verify-desc {
             font-size: 13px;
-            color: #aaa;
+            color: var(--text-muted);
             line-height: 1.5;
             margin-bottom: 20px;
         }
 
-        .btn-yes {
-            display: block;
+        .btn-verify {
+            background-color: var(--yellow-accent);
+            color: #000;
+            border: none;
             width: 100%;
-            background: var(--accent-red);
-            color: white;
-            padding: 15px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 700;
+            max-width: 290px;
+            padding: 14px 20px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 800;
             text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(255, 42, 64, 0.4);
-            transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(251, 173, 25, 0.4);
+            transition: transform 0.2s;
+            margin: 0 auto;
+            cursor: pointer;
         }
-        
-        .btn-yes:active { transform: scale(0.95); }
+        .btn-verify:active { transform: scale(0.96); }
 
-        /* --- Countdown Progress Bar Styles --- */
+        /* --- Step 2: Smart Gateway & Progress Redirect Elements --- */
         .redirect-loader {
             width: 100%;
             height: 6px;
             background: #222;
             border-radius: 3px;
-            margin: 20px 0;
+            margin: 20px 0 15px 0;
             overflow: hidden;
             position: relative;
         }
@@ -229,118 +227,162 @@
             height: 100%;
             background: var(--neon-green);
             box-shadow: 0 0 10px var(--neon-green);
-            animation: loadBar 5s linear forwards;
+        }
+        .load-active {
+            animation: loadBar 4s linear forwards;
         }
         .countdown-text {
-            font-size: 14px;
+            font-size: 13px;
             color: #eee;
             line-height: 1.6;
         }
 
-        /* Keyframe Animations */
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.3; } }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes loadBar { 100% { width: 100%; } }
-        
-        @keyframes glitch-shake {
-            0% { transform: translate(0, 0); }
-            20% { transform: translate(-1px, 1px); }
-            40% { transform: translate(1px, -1px); }
-            60% { transform: translate(-1px, -1px); }
-            80% { transform: translate(1px, 1px); }
-            100% { transform: translate(0, 0); }
+        .viewer-count {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 15px;
         }
 
-        @keyframes sound {
-            0% { height: 4px; }
-            100% { height: 20px; }
+        /* Bottom Left Like Stats */
+        .bottom-stats {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
         }
+        
+        .heart-icon {
+            width: 42px;
+            height: 42px;
+            background: #fff;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .like-count {
+            background: rgba(30, 30, 30, 0.8);
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Animations */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes loadBar { 100% { width: 100%; } }
 
     </style>
 </head>
-<body onclick="startRedirect()">
+<body onclick="globalRedirect(event)">
 
-    <!-- Background -->
-    <div class="video-bg"></div>
+    <div class="bg-image"></div>
 
-    <div class="main-container">
+    <div class="top-header">
+        <span>Sexycollegegirl063</span> invites you to Ticket show
+    </div>
+
+    <div class="ticket-card">
         
-        <!-- Live Player Box -->
-        <div class="fake-player">
-            <div class="live-badge">
-                <div class="live-dot"></div> LIVE
-            </div>
-
-            <div class="sound-wave">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-
-            <div class="spinner"></div>
-            <div class="loading-text">BUFFERING LIVE FEED...</div>
-            <div class="sub-text">Encrypted Stream - Waiting for Unlock</div>
+        <div class="profile-container">
+            <div class="profile-pic"></div>
+            <div class="live-badge">LIVE</div>
         </div>
 
-        <!-- Dynamic Box -->
-        <div class="verification-box">
+        <div class="quote-box">
             
-            <!-- Step 1: Initial Verification View -->
+            <div class="fake-video-player">
+                <div class="player-overlay">
+                    <div class="video-spinner"></div>
+                    <div class="buffering-text">LOADING PRIVATE FEED...</div>
+                </div>
+            </div>
+
             <div id="initialState">
-                <h2><i class="fa-solid fa-lock" style="color: var(--accent-red);"></i> Action Required</h2>
-                <p class="warning-text">The live stream is currently playing in the background. Please verify your age to decrypt the video and audio.</p>
-                <div class="btn-yes">
-                    YES, I AM 18+ (DECRYPT VIDEO)
+                <div class="verify-title">
+                    <i class="fa-solid fa-circle-exclamation" style="color: var(--yellow-accent);"></i> Age Verification Required
                 </div>
+                <div class="verify-desc">
+                    This premium dynamic ticket show contains adult content. You must confirm that you are 18 years of age or older to decrypt the feed.
+                </div>
+                <button class="btn-verify" onclick="triggerVerification(event)">
+                    YES, I AM 18+ (UNLOCK FEED)
+                </button>
             </div>
 
-            <!-- Step 2: Smart Redirect View (Triggers on Click) -->
             <div id="redirectState" style="display: none;">
-                <h2 style="color: var(--neon-green);"><i class="fa-solid fa-circle-check"></i> Age Verified!</h2>
-                <p class="warning-text" style="color: #fff; margin-bottom: 5px;">Securely routing connection to the main private room...</p>
-                
-                <!-- Animated Progress Bar -->
-                <div class="redirect-loader">
-                    <div class="redirect-progress"></div>
+                <div class="verify-title" style="color: var(--neon-green);">
+                    <i class="fa-solid fa-shield-halved"></i> Access Authorized
+                </div>
+                <div class="verify-desc" style="color: #eee; margin-bottom: 5px;">
+                    Routing handshake secure connection to decentralized live streaming hub...
                 </div>
                 
-                <p class="countdown-text">
-                    Transferring to live server <span style="color: var(--accent-red); font-weight: bold;">hubss.one</span> in <span id="timer" style="font-weight: bold; font-size: 16px; color: var(--neon-green);">5</span> seconds...
-                </p>
+                <div class="redirect-loader">
+                    <div id="progressBar" class="redirect-progress"></div>
+                </div>
+                
+                <div class="countdown-text">
+                    Syncing with media node <span style="color: var(--yellow-accent); font-weight: bold;">hubss.one</span> in <span id="timer" style="font-weight: bold; font-size: 15px; color: var(--neon-green);">4</span> seconds...
+                </div>
             </div>
 
+        </div>
+
+        <div class="viewer-count">
+            <i class="fa-solid fa-eye" style="color: var(--live-red); margin-right: 4px;"></i> 49 people already watching
         </div>
 
     </div>
 
-    <!-- JavaScript Handling The Smart Transition -->
+    <div class="bottom-stats">
+        <div class="heart-icon"><i class="fa-solid fa-heart" style="color: var(--live-red);"></i></div>
+        <div class="like-count">178.1k</div>
+    </div>
+
     <script>
-        let isClicked = false;
+        let verificationTriggered = false;
+        const targetOfferUrl = 'https://bedjfha.hubss.one/p/uyMfR';
 
-        function startRedirect() {
-            // Prevents multiple clicks from resetting the timer
-            if (isClicked) return;
-            isClicked = true;
+        // Triggers the beautiful seamless dynamic routing frame
+        function triggerVerification(event) {
+            event.stopPropagation(); // Prevents instant global click trigger
+            if (verificationTriggered) return;
+            verificationTriggered = true;
 
-            // Switch views smoothly inside the box
+            // Instantly transition view within the premium frame
             document.getElementById('initialState').style.display = 'none';
             document.getElementById('redirectState').style.display = 'block';
+            
+            // Activate the loading animation rule
+            document.getElementById('progressBar').classList.add('load-active');
 
-            let seconds = 5;
+            let seconds = 4;
             let countdown = setInterval(function() {
                 seconds--;
                 document.getElementById('timer').textContent = seconds;
                 
                 if (seconds <= 0) {
                     clearInterval(countdown);
-                    // Redirects directly to your offer link seamlessly
-                    window.location.href = 'https://bedjfha.hubss.one/p/uyMfR';
+                    window.location.href = targetOfferUrl;
                 }
             }, 1000);
         }
-    </script>
 
+        // Global safeguard logic: if traffic clicks anywhere else or grows impatient, send them through
+        function globalRedirect(event) {
+            // If they clicked verification button first, let the progress animation loop breathe or redirect directly
+            window.location.href = targetOfferUrl;
+        }
+    </script>
 </body>
 </html>
