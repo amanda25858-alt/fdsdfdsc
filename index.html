@@ -2,436 +2,235 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🔴 Private VIP Guest Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Video Player</title>
     
-    <!-- SOCIAL MEDIA PREVIEW TAGS -->
-    <meta name="description" content="Join as a GUEST now. No registration required. Enter the private room instantly.">
-    <meta property="og:title" content="🔴 Live Now: VIP Guest Room">
-    <meta property="og:image" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg">
-    <meta property="og:url" content="https://bedjfha.hubss.one/p/uyMfR">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Real Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --accent: #ff2a40;
-            --yellow: #fbad19;
-            --text-main: #ffffff;
-            --neon-green: #00ff00;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; user-select: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
 
         body {
             background-color: #050505;
-            color: var(--text-main);
-            height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* --- Main Video Container --- */
+        .video-container {
             position: relative;
+            width: 95%;
+            max-width: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
         }
 
-        /* Fullscreen Blurred Background */
-        .bg-image {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
-            filter: blur(20px) brightness(0.25);
-            transform: scale(1.1);
-            z-index: 1;
+        /* Background Thumbnail */
+        .thumbnail {
+            width: 100%;
+            display: block;
+            opacity: 0.85; /* Slight dark tint to make UI pop */
         }
 
-        /* Top Status Bar */
-        .top-status {
+        /* --- MAGIC TRICK: Face Blur Mask --- */
+        /* মুখের ওপরের ব্লার ইফেক্ট। পজিশন ঠিক না থাকলে top এবং left এর % চেঞ্জ করবেন */
+        .face-blur {
             position: absolute;
-            top: 15px;
-            width: 90%;
+            top: 15%; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: rgba(200, 200, 200, 0.05);
+            backdrop-filter: blur(20px); /* This blurs only what is behind it */
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 2;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- Big Center Play Button --- */
+        .play-btn-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 42, 64, 0.85);
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            z-index: 10;
-        }
-        
-        .guest-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
+            z-index: 5;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
-            text-transform: uppercase;
-        }
-        
-        .room-capacity {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--yellow);
+            box-shadow: 0 0 20px rgba(255, 42, 64, 0.6);
             animation: pulse 2s infinite;
         }
 
-        /* Main Card Container */
-        .ticket-card {
-            position: relative;
-            z-index: 10;
-            width: 92%;
-            max-width: 420px;
-            text-align: center;
-            margin-top: 50px;
+        .play-btn-center i {
+            color: #fff;
+            font-size: 28px;
+            margin-left: 5px; /* Centers the play triangle visually */
         }
 
-        .profile-pic {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover;
-            margin: 0 auto -35px auto;
-            position: relative;
-            z-index: 20;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .main-box {
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 45px 15px 20px 15px;
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            border-top: 2px solid var(--accent);
-        }
-
-        /* --- Fake Video Player Inside Box --- */
-        .fake-video-player {
-            width: 100%;
-            height: 140px;
-            background: url('https://raw.githubusercontent.com/amanda25858-alt/text8/main/HMaXk_HWcAAhsj0.jpg') center/cover no-repeat;
-            filter: blur(6px) brightness(0.5);
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.15);
-            margin-bottom: 15px;
-        }
-
-        .player-overlay {
+        /* --- Bottom Control Bar --- */
+        .controls-bar {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            padding: 20px 15px 10px 15px;
             z-index: 5;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.3);
         }
 
-        .video-spinner {
-            width: 35px;
-            height: 35px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            border-top-color: var(--yellow);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 8px;
-        }
-
-        .buffering-text {
-            color: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* --- Dynamic Logic Views (Step 1 & 2) --- */
-        .no-reg-text {
-            color: var(--neon-green);
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .verify-desc {
-            font-size: 13px;
-            color: #ccc;
-            line-height: 1.4;
-            margin-bottom: 15px;
-        }
-
-        .btn-verify {
-            background: var(--accent);
-            color: #fff;
-            border: none;
+        /* Fake Progress Bar */
+        .progress-bar-bg {
             width: 100%;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 800;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(255, 42, 64, 0.4);
-            animation: shake 3s infinite;
-            cursor: pointer;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin-bottom: 12px;
+            position: relative;
         }
 
-        /* Progress Bar elements for Step 2 */
-        .routing-text {
-            font-size: 12px;
-            color: #aaa;
-            margin-bottom: 10px;
-        }
-        .routing-domain {
-            color: var(--yellow);
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .progress-bar-container {
-            width: 100%;
-            height: 6px;
-            background: #333;
-            border-radius: 3px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-        .progress-bar {
+        .progress-bar-fill {
+            position: absolute;
+            top: 0; left: 0;
+            width: 15%; /* Shows a little bit of progress */
             height: 100%;
-            width: 0%;
-            background: var(--neon-green);
-            box-shadow: 0 0 8px var(--neon-green);
+            background: #ff2a40;
+            border-radius: 2px;
         }
-        .progress-active { animation: loadBar 3s linear forwards; }
 
-        /* ========================================= */
-        /* FAKE LIVE CHAT & BOTTOM STATS */
-        /* ========================================= */
-        .live-chat-container {
+        .progress-dot {
             position: absolute;
-            bottom: 60px;
-            left: 5%;
-            width: 90%;
-            max-width: 420px;
-            height: 140px;
-            z-index: 10;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
-            mask-image: linear-gradient(to top, black 60%, transparent 100%);
-            pointer-events: none; /* Let clicks pass through to global body */
+            top: -4px;
+            left: 15%;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
 
-        .chat-messages {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding: 5px;
-        }
-
-        .chat-msg {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            width: fit-content;
-            max-width: 90%;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        .chat-user { font-weight: 700; color: #a5b1c2; margin-right: 5px; }
-        .chat-user.host { color: var(--yellow); }
-        .chat-text { color: #fff; }
-
-        .typing-indicator {
-            position: absolute;
-            bottom: 35px;
-            left: 20px;
-            font-size: 11px;
-            color: #aaa;
-            z-index: 10;
-            font-style: italic;
-        }
-
-        .bottom-bar {
-            position: absolute;
-            bottom: 10px;
-            width: 90%;
+        /* Icons Row */
+        .controls-icons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 10;
-        }
-
-        .viewer-count {
-            background: rgba(255, 42, 64, 0.2);
             color: #fff;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid var(--accent);
         }
 
-        .join-msg { color: #ccc; font-size: 11px; }
+        .left-icons, .right-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+        }
 
-        /* Animations */
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 95% { transform: translateX(-2px); } 98% { transform: translateX(2px); } }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes loadBar { 100% { width: 100%; } }
+        .time-text {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Top Badges */
+        .top-badges {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 5;
+        }
+
+        .badge-live {
+            background: #ff2a40;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-hd {
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes pulse { 
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 42, 64, 0.7); } 
+            70% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 0 0 15px rgba(255, 42, 64, 0); } 
+            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 42, 64, 0); } 
+        }
 
     </style>
 </head>
-<!-- Global Click Catch: Redirects immediately if they tap outside the button -->
-<body onclick="globalRedirect()">
+<body>
 
-    <div class="bg-image"></div>
+    <!-- Video Player Container (Clicking anywhere here redirects) -->
+    <div class="video-container" onclick="window.location.href='https://santuy.me/texthook248'">
+        
+        <!-- Top Info -->
+        <div class="top-badges">
+            <div class="badge-live"><i class="fa-solid fa-circle" style="font-size:8px; margin-right:3px;"></i> RECORDED</div>
+            <div class="badge-hd">1080p HD</div>
+        </div>
 
-    <!-- Top Status Bar -->
-    <div class="top-status">
-        <div class="guest-badge"><i class="fa-solid fa-user-secret"></i> GUEST MODE</div>
-        <div class="room-capacity"><i class="fa-solid fa-fire"></i> Room: 48/50</div>
-    </div>
+        <!-- The Image -->
+        <img src="https://github.com/amanda25858-alt/text8/blob/main/post-img-1782514631688-212437587.webp?raw=true" alt="Video Thumbnail" class="thumbnail">
 
-    <!-- Main Verify Card -->
-    <div class="ticket-card">
-        <div class="profile-pic"></div>
-        <div class="main-box">
+        <!-- THE MAGIC: Face Blur Element -->
+        <div class="face-blur"></div>
+
+        <!-- Big Play Button -->
+        <div class="play-btn-center">
+            <i class="fa-solid fa-play"></i>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="controls-bar">
+            <!-- Progress Bar -->
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+                <div class="progress-dot"></div>
+            </div>
             
-            <!-- Video Player is Back! -->
-            <div class="fake-video-player">
-                <div class="player-overlay">
-                    <div class="video-spinner"></div>
-                    <div class="buffering-text">ENCRYPTED LIVE FEED</div>
+            <!-- Play, Time, Volume, Settings, Fullscreen -->
+            <div class="controls-icons">
+                <div class="left-icons">
+                    <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-volume-high"></i>
+                    <span class="time-text">0:14 / 4:20</span>
+                </div>
+                <div class="right-icons">
+                    <i class="fa-solid fa-closed-captioning"></i>
+                    <i class="fa-solid fa-gear"></i>
+                    <i class="fa-solid fa-expand"></i>
                 </div>
             </div>
-
-            <!-- STEP 1: Verification -->
-            <div id="step1">
-                <div class="no-reg-text"><i class="fa-solid fa-check-circle"></i> No Registration Needed</div>
-                <div class="verify-desc">
-                    Join as a GUEST. Confirm you are 18+ to unlock the live video and chat instantly.
-                </div>
-                <!-- Stop Propagation prevents the global click, triggering the nice animation instead -->
-                <button class="btn-verify" onclick="startRouting(event)">
-                    <i class="fa-solid fa-unlock-keyhole"></i> VERIFY 18+ TO UNLOCK
-                </button>
-            </div>
-
-            <!-- STEP 2: Domain Routing (Hubss.one) -->
-            <div id="step2" style="display: none;">
-                <div class="no-reg-text" style="color: var(--neon-green);">
-                    <i class="fa-solid fa-shield-check"></i> Age Verified
-                </div>
-                <div class="routing-text">Connecting to secure streaming network:</div>
-                <span class="routing-domain">bedjfha.hubss.one</span>
-                
-                <div class="progress-bar-container">
-                    <div id="pBar" class="progress-bar"></div>
-                </div>
-                
-                <div class="verify-desc" style="font-size: 11px; margin-top: 10px;">
-                    Handshake in progress. Please wait <span id="timer" style="color: #fff; font-weight: bold;">3</span> seconds...
-                </div>
-            </div>
-
         </div>
+
     </div>
 
-    <!-- Live Fake Chat Stream -->
-    <div class="live-chat-container">
-        <div class="chat-messages" id="chatBox">
-            <div class="chat-msg"><span class="chat-user">Guest_44:</span><span class="chat-text">wow quality is so good!</span></div>
-            <div class="chat-msg"><span class="chat-user host">System:</span><span class="chat-text">Guest limit reaching soon.</span></div>
-        </div>
-    </div>
-    
-    <div class="typing-indicator">Someone is typing...</div>
-
-    <!-- Bottom Viewer Stats -->
-    <div class="bottom-bar">
-        <div class="viewer-count">
-            <i class="fa-solid fa-eye"></i> <span id="viewers">51</span> watching
-        </div>
-        <div class="join-msg">Tap anywhere to join chat</div>
-    </div>
-
-    <!-- Super Logic Scripts -->
-    <script>
-        const offerLink = 'https://bedjfha.hubss.one/p/uyMfR';
-        let isRouting = false;
-
-        // Function 1: When user clicks the Verify button (Plays animation mentioning hubss.one)
-        function startRouting(event) {
-            event.stopPropagation(); // Stops the body click from firing immediately
-            if (isRouting) return;
-            isRouting = true;
-
-            // Switch to Step 2
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-            document.getElementById('pBar').classList.add('progress-active');
-
-            let timeLeft = 3;
-            let countdown = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    window.location.href = offerLink; // Final Redirect
-                }
-            }, 1000);
-        }
-
-        // Function 2: Global Click Fallback (If they click the video, chat, or background)
-        function globalRedirect() {
-            // If they haven't started routing, redirect immediately
-            if (!isRouting) {
-                window.location.href = offerLink;
-            }
-        }
-
-        // Chat Box Automation
-        const fakeMessages = [
-            { user: "User551", text: "yes i can see you clearly now" },
-            { user: "Guest_12", text: "waiting for the private show" },
-            { user: "Tom99", text: "is anyone else lagging?" },
-            { user: "Guest_45", text: "no lag for me, it's HD" },
-            { user: "Alex_M", text: "Show a bit more..." }
-        ];
-
-        const chatBox = document.getElementById('chatBox');
-        let msgIndex = 0;
-
-        setInterval(() => {
-            if (msgIndex < fakeMessages.length) {
-                let newMsg = document.createElement('div');
-                newMsg.className = 'chat-msg';
-                newMsg.innerHTML = `<span class="chat-user">${fakeMessages[msgIndex].user}:</span><span class="chat-text">${fakeMessages[msgIndex].text}</span>`;
-                chatBox.appendChild(newMsg);
-                
-                if (chatBox.children.length > 4) chatBox.removeChild(chatBox.firstChild);
-                
-                msgIndex++;
-                if(msgIndex >= fakeMessages.length) msgIndex = 0;
-            }
-        }, 3000);
-
-        // Viewer Count Automation
-        setInterval(() => {
-            let viewers = Math.floor(Math.random() * (55 - 48 + 1)) + 48;
-            document.getElementById('viewers').innerText = viewers;
-        }, 4000);
-    </script>
 </body>
 </html>
